@@ -7,19 +7,18 @@
 
   <body>
     <?php
-      $serialNumber = ["C02P20DNG3NN", "FSVMJ72", "G5MNJ72", "D25P205ZF8J9", "2X7NJ72", "C02RR5JUG8WN", "HLDKH72", "58D8H72", "D25P205GF8J9", "C1MK8GZHDTY4"];
-      $manufacturer = ["Apple", "Dell", "Dell", "Apple", "Dell", "Apple", "Dell","Dell", "Apple", "Apple"];
-      $model = ["15\" MacBook Pro", "Latitude E7470", "Latitude E7470", "27\" iMac", "Latitude E5570", "15\" MacBook Pro",  "Latitude E5570",  "Latitude E5570", "27\" iMac", "13\" MacBook Pro"];
-      $purchaseYear = ["2015", "2016", "2016", "2015", "2016", "2015", "2016", "2016", "2015", "2013"];
-      $laptop = ["Yes", "Yes", "Yes", "", "Yes", "Yes", "Yes", "Yes", "", "Yes"];
+      $serialNumber = ["C02P20DNG3NN", "FSVMJ72", "G5MNJ72", "D25P205ZF8J9", "2X7NJ72", "C02RR5JUG8WN", "HLDKH72", "58D8H72", "D25P205GF8J9", "C1MK8GZHDTY4", "HE1104ME"];
+      $manufacturer = ["Apple", "Dell", "Dell", "Apple", "Dell", "Apple", "Dell","Dell", "Apple", "Apple", "Apple"];
+      $model = ["15\" MacBook Pro", "Latitude E7470", "Latitude E7470", "27\" iMac", "Latitude E5570", "15\" MacBook Pro",  "Latitude E5570",  "Latitude E5570", "27\" iMac", "13\" MacBook Pro", "27\" iMac"];
+      $purchaseYear = ["2015", "2016", "2016", "2015", "2016", "2015", "2016", "2016", "2015", "2013", "2018"];
+      $laptop = ["Yes", "Yes", "Yes", "", "Yes", "Yes", "Yes", "Yes", "", "Yes", ""];
 
       $col = count($serialNumber);
       $appleCount = $dellCount = 0;
       $comp = [];
 
       for($i = 0; $i < $col; $i++){
-        $comp[] = ["serialNumber" => $serialNumber[$i], "manufacturer" => $manufacturer[$i],
-                   "model" => $model[$i], "purhaseYear" => $purchaseYear[$i], "laptop" => $laptop[$i], ];
+        $comp[] = ["serialNumber" => $serialNumber[$i], "manufacturer" => $manufacturer[$i], "model" => $model[$i], "purhaseYear" => $purchaseYear[$i], "laptop" => $laptop[$i], ];
         $comp[$i]["manufacturer"] == "Apple" ? $appleCount++ : $dellCount++;
       }
     ?>
