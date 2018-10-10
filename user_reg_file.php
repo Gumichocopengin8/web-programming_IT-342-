@@ -27,7 +27,7 @@
           } else
             $error_msg = "Username only contains alphanumeric characters";
         } else
-          $error_msg = "<p>Enter all fields</p>";
+          $error_msg = "Enter all fields";
       }
       if ($showform) {
         if ($error_msg)
