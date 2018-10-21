@@ -67,33 +67,29 @@
         $d = DateTime::createFromFormat($format, $date);
         return $d && $d->format($format) == $date;
       }
-    
+      
+      $error_msg = "";
       $showform = true;
-      if (isset($_POST['subform'])) {
+      if (isset($_POST['submit'])) {
         echo "<p>Form submitted</p>";
         if($_POST['manufacturer'] && $_POST['model'] && $_POST['model_year']) {
           if(ctype_digit($_POST['model_year'])) {
             if($_POST['type'] === "laptop"||$_POST['type'] === "desktop"||$_POST['type'] === "tablet"||$_POST['type'] === "iPad") {
               if(isDate($_POST['warranty_end_date']) && isDate($_POST['purchase_date']) && isDate($_POST['verified_date']) && isDate($_POST['retired_date'])) {
-                require_once('config.php');
+                require_once('../config.php');
                 $conn = new mysqli($servername, $user, $pw, $db);
                 if ($conn->connect_error)
                   die('Connection Error: '.$conn->connect_error);
-                $stmt = $conn->prepare("insert into machines (
-                  manufacturer, model, model_year, serial, type, warranty_type, warranty_end_date, 
-                  vendor, purchase_date, verified_date, retired_date) values (?,?,?,?,?,?,?,?,?,?,?)");
-                $stmt->bind_param("sssssssssss", 
+                $stmt = $conn->prepare("UPDATE machines SET manufacturer = ?, model = ?, model_year = ?, serial = ?, 
+                  type = ?, warranty_type = ?, warranty_end_date = ?, vendor = ?, purchase_date = ?, verified_date = ?, 
+                  retired_date = ? WHERE machine_id = ?");
+                $stmt->bind_param("ssssssssssss", 
                   $_POST['manufacturer'], $_POST['model'], $_POST['model_year'], $_POST['serial'],
                   $_POST['type'], $_POST['warranty_type'], $_POST['warranty_end_date'], $_POST['vendor'], 
-                  $_POST['purchase_date'], $_POST['verified_date'], $_POST['retired_date']);
+                  $_POST['purchase_date'], $_POST['verified_date'], $_POST['retired_date'], $_POST['machine_id']);
                 if ($stmt->execute()) {
                   echo "<p>Successfully requested account</p>";
-                  echo "<p>Redirect in 3 seconds</p>";
-                  echo "<script> 
-                          setTimeout(function(){
-                            window.location.href = '/machinesDB.php';
-                          }, 3*1000);
-                        </script>";
+                  header('Location: ./computerList.php'); // redirect
                   $showform = false;
                 } else
                   $error_msg = "failed to insert";
@@ -110,20 +106,21 @@
       if ($showform) {
     ?>
     <div id="wrapper">
-      <p class="title">Please provide the following information:</p>
+      <p class="title">Please provide the following information: Edit</p>
       <?php
         if ($error_msg) {
           echo "<p style=color:red>$error_msg </p>";
         }
       ?>
-      <form method="post" action="machinesDB.php" class="form">
+      <form method="post" action="./updateComputer.php" class="form">
+        <?php echo '<input type="hidden" name="machine_id" value="'.$_GET['id'].'">';?>
         <div>
           <label class="prompt" for="manufacturer">Manufacturer:</label>
-          <input class="field" type="text" name="manufacturer" value="" required/>
+          <input class="field" type="text" name="manufacturer" value="<?php if(!empty($_POST['manufacturer'])){ echo $_POST['manufacturer'];}?>" required/>
         </div>
         <div>
           <label class="prompt" for="Model">model:</label>
-          <input class="field" type="text" name="model" value="" required/>
+          <input class="field" type="text" name="model" value="<?php if(!empty($_POST['model'])){ echo $_POST['model'];}?>" required/>
         </div>
         <div>
           <label class="prompt" for="model_year">Model Year:</label>
@@ -131,7 +128,7 @@
         </div>
         <div>
           <label class="prompt" for="serial">Serial:</label>
-          <input class="field" type="text" name="serial" value=""/>
+          <input class="field" type="text" name="serial" value="<?php if(!empty($_POST['serial'])){ echo $_POST['serial'];}?>"/>
         </div>
         <div>
           <label class="prompt" for="type">Type:</label>
@@ -146,31 +143,31 @@
         </div>
         <div>
           <label class="prompt" for="warranty_type">Warranty Type:</label>
-          <input class="field" type="text" name="warranty_type" value=""/>
+          <input class="field" type="text" name="warranty_type" value="<?php if(!empty($_POST['warranty_type'])){ echo $_POST['warranty_type'];}?>"/>
         </div>
         <div>
           <label class="prompt" for="warranty_end_date">Warranty End Date:</label>
-          <input class="field" type="date" name="warranty_end_date" value=""/>
+          <input class="field" type="date" name="warranty_end_date" value="<?php if(!empty($_POST['warranty_end_date'])){ echo $_POST['warranty_end_date'];}?>"/>
         </div>
         <div>
           <label class="prompt" for="vendor">Vendor:</label>
-          <input class="field" type="text" name="vendor" value=""/>
+          <input class="field" type="text" name="vendor" value="<?php if(!empty($_POST['vendor'])){ echo $_POST['vendor'];}?>"/>
         </div>
         <div>
           <label class="prompt" for="purchase_date">Purchase Date:</label>
-          <input class="field" type="date" name="purchase_date" value=""/>
+          <input class="field" type="date" name="purchase_date" value="<?php if(!empty($_POST['purchase_date'])){ echo $_POST['purchase_date'];}?>"/>
         </div>
         <div>
           <label class="prompt" for="verified_date">Verified Date:</label>
-          <input class="field" type="date" name="verified_date" value=""/>
+          <input class="field" type="date" name="verified_date" value="<?php if(!empty($_POST['verified_date'])){ echo $_POST['verified_date'];}?>"/>
         </div>
         <div>
           <label class="prompt" for="retired_date">Retired Date:</label>
-          <input class="field" type="date" name="retired_date" value=""/>
+          <input class="field" type="date" name="retired_date" value="<?php if(!empty($_POST['retired_date'])){ echo $_POST['retired_date'];}?>"/>
         </div>
   
         <input type="hidden" name="url" />
-        <div><input class="submit" type="submit" name="subform" value="Add Computer"/></div>
+        <div><input class="submit" type="submit" name="submit" value="update Computer"/></div>
       </form>
     </div>
     <?php
