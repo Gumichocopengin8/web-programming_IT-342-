@@ -83,7 +83,7 @@
                 $stmt = $conn->prepare("UPDATE machines SET manufacturer = ?, model = ?, model_year = ?, serial = ?, 
                   type = ?, warranty_type = ?, warranty_end_date = ?, vendor = ?, purchase_date = ?, verified_date = ?, 
                   retired_date = ? WHERE machine_id = ?");
-                $stmt->bind_param("ssssssssssss", 
+                $stmt->bind_param("ssissssssssi", 
                   $_POST['manufacturer'], $_POST['model'], $_POST['model_year'], $_POST['serial'],
                   $_POST['type'], $_POST['warranty_type'], $_POST['warranty_end_date'], $_POST['vendor'], 
                   $_POST['purchase_date'], $_POST['verified_date'], $_POST['retired_date'], $_POST['machine_id']);
