@@ -5,7 +5,7 @@
       die("Connection error");
   }
   
-  $param = $_POST['machine_id'];
+  $param = $_GET['id'];
   $sql = "DELETE FROM machines WHERE machine_id = $param";
   $stmt = $conn->prepare($sql);
 

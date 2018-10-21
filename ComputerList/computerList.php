@@ -80,9 +80,20 @@
         echo "</tr>";
         $index = 0;
         while($stmt->fetch()) {
-          echo '<form action="delete.php" method="post">';
+          echo '<form action="updateComputer.php" method="post">';
           echo '<tr>';
             echo '<input type="hidden" name="machine_id" value="'.$machine_id.'">';
+            echo '<input type="hidden" name="manufacturer" value="'.$manufacturer.'">';
+            echo '<input type="hidden" name="model" value="'.$model.'">';
+            echo '<input type="hidden" name="model_year" value="'.$model_year.'">';
+            echo '<input type="hidden" name="serial" value="'.$serial.'">';
+            echo '<input type="hidden" name="type" value="'.$type.'">';
+            echo '<input type="hidden" name="warranty_type" value="'.$warranty_type.'">';
+            echo '<input type="hidden" name="warranty_end_date" value="'.$warranty_end_date.'">';
+            echo '<input type="hidden" name="vendor" value="'.$vendor.'">';
+            echo '<input type="hidden" name="purchase_date" value="'.$purchase_date.'">';
+            echo '<input type="hidden" name="verified_date" value="'.$verified_date.'">';
+            echo '<input type="hidden" name="retired_date" value="'.$retired_date.'">';
             echo '<td>'.++$index.'</td>';
             echo '<td>'.$manufacturer.'</td>';
             echo '<td>'.$model.'</td>';
@@ -95,8 +106,8 @@
             echo '<td>'.$purchase_date.'</td>';
             echo '<td>'.$verified_date.'</td>';
             echo '<td>'.$retired_date.'</td>';
-            echo '<td><a href="./updateComputer.php?id='.$machine_id.'">Edit</a></td>';
-            echo '<td><input type="submit" value="Delete" name="delete"></td>';
+            echo '<td><input type="submit" value="Edit" name="update"></td>';
+            echo '<td><a href="./delete.php?id='.$machine_id.'">Delete</a></td>';
           echo '</tr>';
           echo '</form>';
         }

@@ -74,7 +74,7 @@
         echo "<p>Form submitted</p>";
         if($_POST['manufacturer'] && $_POST['model'] && $_POST['model_year']) {
           if(ctype_digit($_POST['model_year'])) {
-            if($_POST['type'] === "laptop"||$_POST['type'] === "desktop"||$_POST['type'] === "tablet"||$_POST['type'] === "iPad") {
+            if($_POST['type'] === "Laptop"||$_POST['type'] === "Desktop"||$_POST['type'] === "Tablet Computer"||$_POST['type'] === "iPad") {
               if(isDate($_POST['warranty_end_date']) && isDate($_POST['purchase_date']) && isDate($_POST['verified_date']) && isDate($_POST['retired_date'])) {
                 require_once('../config.php');
                 $conn = new mysqli($servername, $user, $pw, $db);
@@ -113,7 +113,7 @@
         }
       ?>
       <form method="post" action="./updateComputer.php" class="form">
-        <?php echo '<input type="hidden" name="machine_id" value="'.$_GET['id'].'">';?>
+        <?php echo '<input type="hidden" name="machine_id" value="'.$_POST['machine_id'].'">';?>
         <div>
           <label class="prompt" for="manufacturer">Manufacturer:</label>
           <input class="field" type="text" name="manufacturer" value="<?php if(!empty($_POST['manufacturer'])){ echo $_POST['manufacturer'];}?>" required/>
@@ -134,9 +134,12 @@
           <label class="prompt" for="type">Type:</label>
           <select class="field" name="type">
             <?php
-              $values = ["laptop" => "Laptop", "desktop" => "Desktop", "tablet" => "Tablet Computer", "iPad" => "iPad"];
-              foreach($values as $value => $item) {
-                echo '<option value="'.$value.'">'.$item.'</option>';
+              if(!empty($_POST['type'])){
+                echo '<option value="'.$_POST['type'].'">'.$_POST['type'].'</option>';
+              }
+              $values = ["Laptop", "Desktop", "Tablet Computer","iPad"];
+              foreach($values as $value) {
+                echo '<option value="'.$value.'">'.$value.'</option>';
               }
             ?>
           </select>
