@@ -101,11 +101,11 @@
             echo '<td>'.$serial.'</td>';
             echo '<td>'.$type.'</td>';
             echo '<td>'.$warranty_type.'</td>';
-            echo '<td>'.$warranty_end_date.'</td>';
+            echo '<td>'.str_replace("-", "/",$warranty_end_date).'</td>';
             echo '<td>'.$vendor.'</td>';
-            echo '<td>'.$purchase_date.'</td>';
-            echo '<td>'.$verified_date.'</td>';
-            echo '<td>'.$retired_date.'</td>';
+            echo '<td>'.str_replace("-", "/",$purchase_date).'</td>';
+            echo '<td>'.str_replace("-", "/",$verified_date).'</td>';
+            echo '<td>'.str_replace("-", "/",$retired_date).'</td>';
             echo '<td><input type="submit" value="Edit" name="update"></td>';
             echo '<td><a href="./delete.php?id='.$machine_id.'">Delete</a></td>';
           echo '</tr>';
