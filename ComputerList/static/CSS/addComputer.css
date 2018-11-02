@@ -1,0 +1,93 @@
+:root {
+--input-rounded: 5px;
+}
+
+body {
+margin: 0;
+padding: 0;
+background: #f1f1f1;
+}
+input {
+-webkit-border-radius: var(--input-rounded);
+-moz-border-radius: var(--input-rounded);
+border-radius: var(--input-rounded);
+}
+a {
+color: white;
+}
+a:hover {
+color: skyblue;
+}
+a:active {
+color: purple;
+}
+#wrapper {
+background: #f1f1f1;
+}
+#nav {
+position: fixed;
+top: 0;
+background: #1473e6;
+width: 100vw;
+padding: 10px;
+}
+.flex-container {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+margin: 0 50px;
+}
+.logo {
+font-size: 30px;
+}
+.logo a:link {
+text-decoration: none; 
+}
+.nav-title {
+font-size: 40px;
+text-align: center;
+color: yellow;
+}
+.contents {
+background: #fff;
+margin: 100px 50px 40px 50px;
+}
+.title {
+font-size: 30px;
+text-align: center;
+margin: 50px 0;
+}
+.form {
+text-align: right;
+margin-right: 35vw;
+}
+.prompt {
+font-size: 25px;
+margin-top: 20px;
+text-align: right;
+}
+.field {
+width: 130px;
+margin-left: 30px;
+}
+.submit {
+margin: 30px 80px 20px 40px;
+display: inline-block;
+padding: 0.5em 1em;
+text-decoration: none;
+background: skyblue;
+color: blue;
+box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+border-bottom: solid 3px #627295;
+border-radius: 3px;
+font-weight: bold;
+text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+}
+.submit::after {
+-ms-transform: translateY(4px);
+-webkit-transform: translateY(4px);
+transform: translateY(4px);
+box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+border-bottom: none;
+}

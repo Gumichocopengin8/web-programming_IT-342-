@@ -1,0 +1,65 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+  color: white;
+}
+table, th, td{
+  white-space: nowrap;
+  border: double 1px blue;
+  text-align: center;
+  color: black;
+}
+table {
+  margin: auto;
+  background: gray;
+}
+th, td {
+  padding: 3px;
+}
+a {
+  color: white;
+}
+a:hover {
+  color: skyblue;
+}
+a:active {
+  color: purple;
+}
+#nav {
+  position: fixed;
+  top: 0;
+  background: #1473e6;
+  width: 100vw;
+  padding: 10px;
+}
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 50px;
+}
+.logo {
+  font-size: 30px;
+}
+.logo a:link {
+  text-decoration: none; 
+}
+.nav-title {
+  font-size: 40px;
+  text-align: center;
+  color: yellow;
+}
+.contents {
+  margin-top: 10px;
+}
+.add {
+  text-align: center;
+  font-size: 20px;
+  color: white;
+}
+.table {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
