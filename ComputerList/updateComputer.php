@@ -9,6 +9,7 @@
     <?php
       session_start();
 
+      $username = $_SESSION["username"];
       if(!isset($_SESSION["username"])) {
         header('Location: ./auth/login.php');
         exit();
@@ -63,7 +64,7 @@
         <div class="flex-container">
           <div class=logo><a href="./computerList.php">GitPub</a></div>
           <div class="nav-title">Edit computer</div>
-          <div><a href="./auth/logout.php">logout</a></div>
+          <div>login as <?php echo $username; ?>: <a href="./auth/logout.php">logout</a></div>
         </div>
       </div>
 
