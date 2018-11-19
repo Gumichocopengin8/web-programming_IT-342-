@@ -1,9 +1,8 @@
 # PHP web programming
 
-## Cloud9 Support & Documentation
+## Website
 
-Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE.
-To watch some training videos, visit http://www.youtube.com/user/c9ide
+[Computer List website](https://it342-keitanonaka-keitanonaka.c9users.io/ComputerList/auth/login.php)
 
 ## MySQL command on Cloud9
 - run `mysql-ctl cli`
